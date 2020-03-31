@@ -2,14 +2,21 @@
   text-align: center;
 }
 #everything {
-	justify-content: center;
-
+  justify-content: center;
 }
 #tooltip {
-	opacity: 0;
-	width: 200px;
-	height: 100px;
+  opacity: 0;
+  width: 200px;
+  height: 100px;
+  background-color: grey;
+  position: fixed;
+  z-index: 2;
+  bottom: 250px;
+  left: 500px;
 }
-#tooltip:hover {
-	opacity: 0.7;
+svg {
+  padding: 40px;
+}
+#x-axis {
+  z-index: 3;
 }

@@ -4,7 +4,7 @@ d3.select("#everything").attr("align", "center");
 
 d3.json(
   "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json"
-).then(function(data) {
+).then(function (data) {
   let dates = [];
   let value = [];
   let years = [];
@@ -25,7 +25,7 @@ d3.json(
   let scale2 = d3
     .scaleLinear()
     .domain([0, 275])
-    .range([0, height - 225]);
+    .range([0, height - 245]);
 
   let temp1 = [];
   for (var j = 0; j < dates.length; j++) {
@@ -40,17 +40,17 @@ d3.json(
   var yScale = d3
     .scaleLinear()
     .domain([d3.max(value), 0])
-    .range([0, height]);
+    .range([0, height - 40]);
 
   d3.select("svg")
     .append("g")
-    .attr("transform", "translate(38, 500)")
+    .attr("transform", "translate(38, 480)")
     .attr("id", "x-axis")
     .call(d3.axisBottom(xScale));
 
   d3.select("svg")
     .append("g")
-    .attr("transform", "translate(38, 4)")
+    .attr("transform", "translate(38, 19)")
     .attr("id", "y-axis")
     .call(d3.axisLeft(yScale));
 
@@ -59,33 +59,31 @@ d3.json(
     .data(scaledValue)
     .enter()
     .append("rect")
-    .attr("x", function(d, i) {
+    .attr("x", function (d, i) {
       return 38 + xScale(temp1[i]);
     })
-    .attr("y", function(d, i) {
-      return height - scale2(d) + 4;
+    .attr("y", function (d, i) {
+      return height - scale2(d) - 20;
     })
     .attr("width", width / 275)
-    .attr("height", function(d) {
+    .attr("height", function (d) {
       return scale2(d);
     })
     .style("fill", "red")
     .attr("class", "bar")
-    .attr("data-date", function(d, i) {
+    .attr("data-date", function (d, i) {
       return dates[i];
     })
-    .attr("data-gdp", function(d, i) {
+    .attr("data-gdp", function (d, i) {
       return value[i];
     })
-    .on("mouseover", function(d, i) {
+    .on("mouseover", function (d, i) {
       d3.select("#tooltip")
         .style("opacity", 0.8)
         .attr("data-date", dates[i])
         .html(value[i] + " billion" + "<br>" + dates[i]);
     })
-    .on("mouseout", function(d, i) {
+    .on("mouseout", function (d, i) {
       d3.select("#tooltip").style("opacity", 0);
     });
 });
-//clean up code later
-//fix x-axis not showing up
