@@ -81,7 +81,9 @@ d3.json(
       d3.select("#tooltip")
         .style("opacity", 0.8)
         .attr("data-date", dates[i])
-        .html(value[i] + " billion" + "<br>" + dates[i]);
+        .html(
+          "GDP: " + value[i] + " billion" + "<br>" + "Year/Month: " + dates[i]
+        );
     })
     .on("mouseout", function (d, i) {
       d3.select("#tooltip").style("opacity", 0);
